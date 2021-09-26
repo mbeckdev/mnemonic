@@ -46,6 +46,13 @@ header {
   display: flex;
   flex-direction: column;
   text-align: center;
+  box-shadow: 0 0 15px black;
+
+  padding-bottom: 5px;
+}
+
+header h1 {
+  text-shadow: 5px 5px 10px black;
 }
 
 main {
