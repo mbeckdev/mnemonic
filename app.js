@@ -12,7 +12,7 @@ const nouns = {
   g: 'ghosts',
   h: 'hotels',
   i: 'igloos',
-  j: 'Jerry',
+  j: 'jellyfish',
   k: 'kangaroos',
   l: 'lollipops',
   m: 'milk',
@@ -30,6 +30,7 @@ const nouns = {
   y: 'yaks',
   z: 'zebras',
 };
+
 //rancid
 const adjectives = {
   a: 'angry',
@@ -54,12 +55,13 @@ const adjectives = {
   t: 'tough',
   u: 'unique',
   v: 'voluminous',
+  w: 'wobbly',
   x: 'xylophone-like',
   y: 'young',
   z: 'zesty',
 };
 
-//adverbs come before adjectives, patter for this is 'd'
+//adverbs come before adjectives, pattern for this is 'd'
 // ruthelessly,
 const adverbs = {
   a: 'awkwardly',
@@ -84,7 +86,7 @@ const adverbs = {
   t: 'totally',
   u: 'upbeat',
   v: 'very',
-  w: 'wetly',
+  w: 'wild',
   x: 'xenophobically',
   y: "yesterday's",
   z: 'zestily',
@@ -121,6 +123,7 @@ const verbs = {
   z: 'zap',
 };
 
+// a = adjectives, d = adverbs, n = nouns, v = verbs
 const patterns = {
   1: 'n',
   2: 'an',
@@ -177,6 +180,9 @@ function buttonClicked(e) {
   }
 
   mnemonicString = capitalize(mnemonicString);
+  // Take off that extra space we added earlier so we can add a . at the end
+  mnemonicString = mnemonicString.slice(0, -1);
+  mnemonicString += '.';
 
   console.log(mnemonicString);
   returnNode.textContent = `${mnemonicString}`;
