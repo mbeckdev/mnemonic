@@ -132,6 +132,7 @@ const patterns = {
   8: 'ddanvdan',
   9: 'ddanvddan',
   10: 'dddanvddan',
+  11: 'dddanvdddan',
 };
 
 const makeItButton = document.getElementById('make-it-button');
