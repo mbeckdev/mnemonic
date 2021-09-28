@@ -16,7 +16,7 @@ const nouns = {
   k: 'kangaroos',
   l: 'lollipops',
   m: 'milk',
-  n: 'Nancy',
+  n: 'nachos',
   o: 'octagons',
   p: 'pineapples',
   q: 'quests',
