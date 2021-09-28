@@ -79,7 +79,7 @@ const adverbs = {
   m: 'mostly',
   n: 'normally',
   o: 'outrageously',
-  P: 'painfully',
+  p: 'painfully',
   q: 'quietly',
   r: 'romantically',
   s: 'severely',
