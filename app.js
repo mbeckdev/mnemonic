@@ -138,6 +138,47 @@ const patterns = {
   11: 'dddanvdddan',
 };
 
+// a in ...a... means the word in this space is an 'a'
+const conjunctionPatterns = {
+  '...at...': 'nvnccnvn',
+  '...a...': 'nvncnvn',
+  '...w...': 'nvncnvn',
+  '...b...': 'nvncnvn',
+  '...t...': 'nvncnvn',
+  '...s...': 'nvncnvn',
+  '...o...': 'nvncnvn',
+  '...at....': 'nvnccanvn',
+  '...a....': 'nvncanvn',
+  '...w....': 'nvncanvn',
+  '...b....': 'nvncanvn',
+  '...t....': 'nvncanvn',
+  '...s....': 'nvncanvn',
+  '...o....': 'nvncanvn',
+  '....at...': 'anvnccnvn',
+  '....a...': 'anvncnvn',
+  '....w...': 'anvncnvn',
+  '....b...': 'anvncnvn',
+  '....t...': 'anvncnvn',
+  '....s...': 'anvncnvn',
+  '....o...': 'anvncnvn',
+  '....at....': 'anvnccanvn',
+  '....a....': 'anvncanvn',
+  '....w....': 'anvncanvn',
+  '....b....': 'anvncanvn',
+  '....t....': 'anvncanvn',
+  '....s....': 'anvncanvn',
+  '....o....': 'anvncanvn',
+};
+
+const conjunctionWords = {
+  a: 'and', //after
+  w: 'while',
+  b: 'but', //because //before
+  t: 'then',
+  o: 'or',
+  s: 'so',
+};
+
 const makeItButton = document.getElementById('make-it-button');
 makeItButton.addEventListener('click', buttonClicked);
 
@@ -153,6 +194,11 @@ function buttonClicked(e) {
 
   let strLength = inputString.length;
   let pattern = determinePattern(inputString.length); //returns like "anvan"
+  let conjunctionPattern = determineConjunctionPattern(inputString, strLength);
+  if (conjunctionPattern) {
+    // if enteredPattern is not null
+    pattern = conjunctionPattern; //ex. gives nvncnvn
+  }
 
   let mnemonicString = '';
   let wordToPush = '';
@@ -166,7 +212,9 @@ function buttonClicked(e) {
     let letter = inputString[i].toLowerCase(); // 'd' of what was typed
     let thisPattern = pattern[i]; // 'a' a means adj
 
-    if (thisPattern == 'a') {
+    if (thisPattern == 'c') {
+      wordToPush = conjunctionWords[letter];
+    } else if (thisPattern == 'a') {
       wordToPush = adjectives[letter];
     } else if (thisPattern == 'n') {
       wordToPush = nouns[letter];
@@ -191,6 +239,43 @@ function buttonClicked(e) {
 // this seems small for a function, I plan on expanding it later
 function determinePattern(stringLength) {
   return patterns[stringLength];
+}
+
+function determineConjunctionPattern(stringEntered, strLength) {
+  // does stringEntered have 6 length?
+  //does stringEntered have an A in the third spot?
+
+  //'...a...'
+
+  for (const item in conjunctionPatterns) {
+    // does epattersn2 item length equal this length?
+    if (item.length === strLength) {
+      // if (ePatterns2[i].length === strLength) {
+      let dur = item;
+      // let dur = '...a...';
+
+      let counter = 0;
+      for (let j = 0; j < strLength; j++) {
+        //does letter == dur letter?
+        if (dur[j] == '.') {
+          //then do nothing
+          counter++;
+        } else if (dur[j] == stringEntered[j]) {
+          counter++;
+        } else {
+          //nothing
+        }
+      }
+
+      if (strLength === counter) {
+        //it's a match!
+        return conjunctionPatterns[dur]; //gives 'nvncnvn'
+      }
+    }
+  }
+
+  //not a match
+  return null;
 }
 
 function capitalize(theSentence) {
